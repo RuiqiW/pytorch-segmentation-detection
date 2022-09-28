@@ -1,6 +1,6 @@
 [submodule "vision"]
 	path = vision
-	url = https://github.com/warmspringwinds/vision
+	url = https://github.com/RuiqiW/vision.git
 	branch = fully_conv_resnet
 [submodule "synchronized_batchnorm"]
 	path = synchronized_batchnorm
