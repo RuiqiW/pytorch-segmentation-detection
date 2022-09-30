@@ -60,15 +60,24 @@ class Resnet18_8s(nn.Module):
         
         logits_16s_spatial_dim = logits_16s.size()[2:]
         logits_8s_spatial_dim = logits_8s.size()[2:]
+        
+        logits_16s += nn.functional.interpolate(logits_32s, size=logits_16s_spatial_dim, 
+                                                mode='bilinear', align_corners=True)
+        
+        logits_8s += nn.functional.interpolate(logits_16s, size=logits_8s_spatial_dim, 
+                                                mode='bilinear', align_corners=True)
+        
+        logits_upsampled = nn.functional.interpolate(logits_8s, size=input_spatial_dim, 
+                                                mode='bilinear', align_corners=True)
                 
-        logits_16s += nn.functional.upsample_bilinear(logits_32s,
-                                        size=logits_16s_spatial_dim)
+#         logits_16s += nn.functional.upsample_bilinear(logits_32s,
+#                                         size=logits_16s_spatial_dim)
         
-        logits_8s += nn.functional.upsample_bilinear(logits_16s,
-                                        size=logits_8s_spatial_dim)
+#         logits_8s += nn.functional.upsample_bilinear(logits_16s,
+#                                         size=logits_8s_spatial_dim)
         
-        logits_upsampled = nn.functional.upsample_bilinear(logits_8s,
-                                                           size=input_spatial_dim)
+#         logits_upsampled = nn.functional.upsample_bilinear(logits_8s,
+#                                                            size=input_spatial_dim)
         
         return logits_upsampled
 
@@ -130,15 +139,24 @@ class Resnet34_8s(nn.Module):
         
         logits_16s_spatial_dim = logits_16s.size()[2:]
         logits_8s_spatial_dim = logits_8s.size()[2:]
+        
+        logits_16s += nn.functional.interpolate(logits_32s, size=logits_16s_spatial_dim, 
+                                                mode='bilinear', align_corners=True)
+        
+        logits_8s += nn.functional.interpolate(logits_16s, size=logits_8s_spatial_dim, 
+                                                mode='bilinear', align_corners=True)
+        
+        logits_upsampled = nn.functional.interpolate(logits_8s, size=input_spatial_dim, 
+                                                mode='bilinear', align_corners=True)
                 
-        logits_16s += nn.functional.upsample_bilinear(logits_32s,
-                                        size=logits_16s_spatial_dim)
+#         logits_16s += nn.functional.upsample_bilinear(logits_32s,
+#                                         size=logits_16s_spatial_dim)
         
-        logits_8s += nn.functional.upsample_bilinear(logits_16s,
-                                        size=logits_8s_spatial_dim)
+#         logits_8s += nn.functional.upsample_bilinear(logits_16s,
+#                                         size=logits_8s_spatial_dim)
         
-        logits_upsampled = nn.functional.upsample_bilinear(logits_8s,
-                                                           size=input_spatial_dim)
+#         logits_upsampled = nn.functional.upsample_bilinear(logits_8s,
+#                                                            size=input_spatial_dim)
         
         return logits_upsampled
     
@@ -200,14 +218,23 @@ class Resnet50_8s(nn.Module):
         
         logits_16s_spatial_dim = logits_16s.size()[2:]
         logits_8s_spatial_dim = logits_8s.size()[2:]
+        
+        logits_16s += nn.functional.interpolate(logits_32s, size=logits_16s_spatial_dim, 
+                                                mode='bilinear', align_corners=True)
+        
+        logits_8s += nn.functional.interpolate(logits_16s, size=logits_8s_spatial_dim, 
+                                                mode='bilinear', align_corners=True)
+        
+        logits_upsampled = nn.functional.interpolate(logits_8s, size=input_spatial_dim, 
+                                                mode='bilinear', align_corners=True)
                 
-        logits_16s += nn.functional.upsample_bilinear(logits_32s,
-                                        size=logits_16s_spatial_dim)
+#         logits_16s += nn.functional.upsample_bilinear(logits_32s,
+#                                         size=logits_16s_spatial_dim)
         
-        logits_8s += nn.functional.upsample_bilinear(logits_16s,
-                                        size=logits_8s_spatial_dim)
+#         logits_8s += nn.functional.upsample_bilinear(logits_16s,
+#                                         size=logits_8s_spatial_dim)
         
-        logits_upsampled = nn.functional.upsample_bilinear(logits_8s,
-                                                           size=input_spatial_dim)
+#         logits_upsampled = nn.functional.upsample_bilinear(logits_8s,
+#                                                            size=input_spatial_dim)
         
         return logits_upsampled

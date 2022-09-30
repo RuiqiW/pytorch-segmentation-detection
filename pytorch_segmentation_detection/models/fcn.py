@@ -46,6 +46,7 @@ class FCN_32s(nn.Module):
         x = self.fully_conv(x)
         x = self.score_32s(x)
         
-        x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
+#         x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
+        x = nn.functional.interpolate(input=x, size=input_spatial_dim, mode='bilinear', align_corners=True)
         
         return x

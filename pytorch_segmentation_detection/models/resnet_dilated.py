@@ -37,8 +37,11 @@ def adjust_input_image_size_for_proper_feature_alignment(input_img_batch, output
     # size in the list representation.
     new_spatial_dims = list(new_spatial_dims)
 
-    input_img_batch_new_size = nn.functional.upsample_bilinear(input=input_img_batch,
-                                                               size=new_spatial_dims)
+#     input_img_batch_new_size = nn.functional.upsample_bilinear(input=input_img_batch,
+#                                                                size=new_spatial_dims)
+
+    input_img_batch_new_size = nn.functional.interpolate(input_img_batch, size=new_spatial_dims, 
+                                                         mode='bilinear', align_corners=True)
 
     return input_img_batch_new_size
 
@@ -77,7 +80,11 @@ class Resnet101_8s(nn.Module):
         
         x = self.resnet101_8s(x)
         
-        x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
+        x = nn.functional.interpolate(x, size=input_spatial_dim, mode='bilinear', align_corners=True)
+        
+#         x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
+        
+        
         
         return x
     
@@ -120,7 +127,7 @@ class Resnet18_8s(nn.Module):
         
         x = self.resnet18_8s(x)
         
-        x = nn.functional.upsample(x, size=input_spatial_dim, mode='bilinear', align_corners=True)
+        x = nn.functional.interpolate(x, size=input_spatial_dim, mode='bilinear', align_corners=True)
         
         #x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)#, align_corners=False)
         
@@ -160,7 +167,9 @@ class Resnet18_16s(nn.Module):
         
         x = self.resnet18_16s(x)
         
-        x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
+        x = nn.functional.interpolate(x, size=input_spatial_dim, mode='bilinear', align_corners=True)
+        
+#         x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
         
         return x
     
@@ -198,7 +207,9 @@ class Resnet18_32s(nn.Module):
         
         x = self.resnet18_32s(x)
         
-        x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
+        x = nn.functional.interpolate(x, size=input_spatial_dim, mode='bilinear', align_corners=True)
+        
+#         x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
         
         return x
     
@@ -237,7 +248,9 @@ class Resnet34_32s(nn.Module):
         
         x = self.resnet34_32s(x)
         
-        x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
+        x = nn.functional.interpolate(x, size=input_spatial_dim, mode='bilinear', align_corners=True)
+        
+#         x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
         
         return x
 
@@ -275,7 +288,9 @@ class Resnet34_16s(nn.Module):
         
         x = self.resnet34_16s(x)
         
-        x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
+        x = nn.functional.interpolate(x, size=input_spatial_dim, mode='bilinear', align_corners=True)
+        
+#         x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
         
         return x
 
@@ -317,7 +332,9 @@ class Resnet34_8s(nn.Module):
         
         x = self.resnet34_8s(x)
         
-        x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
+        x = nn.functional.interpolate(x, size=input_spatial_dim, mode='bilinear', align_corners=True)
+        
+#         x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
         
         return x
     
@@ -354,7 +371,9 @@ class Resnet50_32s(nn.Module):
         
         x = self.resnet50_32s(x)
         
-        x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
+        x = nn.functional.interpolate(x, size=input_spatial_dim, mode='bilinear', align_corners=True)
+        
+#         x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
         
         return x
 
@@ -392,7 +411,9 @@ class Resnet50_16s(nn.Module):
         
         x = self.resnet50_8s(x)
         
-        x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
+        x = nn.functional.interpolate(x, size=input_spatial_dim, mode='bilinear', align_corners=True)
+        
+#         x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
         
         return x
 
@@ -429,7 +450,9 @@ class Resnet50_8s(nn.Module):
         
         x = self.resnet50_8s(x)
         
-        x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
+        x = nn.functional.interpolate(x, size=input_spatial_dim, mode='bilinear', align_corners=True)
+        
+#         x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
         
         return x
 
@@ -479,6 +502,8 @@ class Resnet9_8s(nn.Module):
         
         x = self.resnet18_8s.fc(x)
         
-        x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
+        x = nn.functional.interpolate(x, size=input_spatial_dim, mode='bilinear', align_corners=True)
+        
+#         x = nn.functional.upsample_bilinear(input=x, size=input_spatial_dim)
         
         return x
